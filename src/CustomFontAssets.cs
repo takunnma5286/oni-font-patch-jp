@@ -19,11 +19,15 @@ namespace enslo.OniFontPatchJp
             var bundlePath = Path.Combine(rootPath, "assets", subdir, "fonts.bundle");
 
             var bundle = AssetBundle.LoadFromFile(bundlePath);
-            var fonts = bundle.LoadAllAssets().OfType<TMP_FontAsset>();
+            var assets = bundle.LoadAllAssets();
+            var fonts = assets.OfType<TMP_FontAsset>().ToList();
+            var materials = assets.OfType<Material>().ToList();
             bundle.Unload(false);
 
             var defaultFont = Resources.FindObjectsOfTypeAll<TMP_FontAsset>()
                 .First(asset => asset.name == "NotoSansCJKjp-Regular");
+
+            fonts.ForEach(font => LegacyFontAssetUpgrader.Upgrade(font, materials, defaultFont.material?.shader));
 
             return new CustomFontAssets(
                 fonts.FirstOrDefault(font => font.name == config.Title) ?? defaultFont,

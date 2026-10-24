@@ -47,6 +47,9 @@
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>$(GameClientDllPath)/UnityEngine.CoreModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.TextCoreFontEngineModule">
+      <HintPath>$(GameClientDllPath)/UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>$(GameClientDllPath)/UnityEngine.UI.dll</HintPath>
     </Reference>
